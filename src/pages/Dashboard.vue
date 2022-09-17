@@ -137,6 +137,7 @@
 
 
 <script setup>
+  import router from "../router";
   import { ref, onMounted } from 'vue';
   import { storeToRefs } from 'pinia';
   
@@ -250,7 +251,7 @@
     width: 100%;
     min-height: 47rem;
     padding: 1rem;
-    background-color: aquamarine;
+    background-color: rgb(59 130 246 / 0.5)
   }
   .new-task-content{
     margin: 10px 0px;
