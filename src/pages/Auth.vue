@@ -35,22 +35,30 @@
       </div>
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
-          <h1>Welcome to the to-do app!</h1>
+          <h1><a >Welcome to the to-do app!</a></h1>
         </div>
-    <section v-if="registered" class="formbg-outer">
-      <SignIn />
-      <div class="">
-        <button @click="changeBoolRegister" class="">
-          Create an account
-        </button>
+    <section v-if="registered">
+      <div class="formbg-outer">
+        <div class="formbg">
+          <SignIn />
+          <div class="field padding-bottom--24 ">
+            <button @click="changeBoolRegister" class="create-login-btn">
+              Create an account?
+            </button>
+          </div>
+        </div>
       </div>
     </section>
-    <section v-else class="formbg-outer">
-      <SignUp />
-      <div class="">
-        <button @click="changeBoolRegister" class="">
-          I already have an account
-        </button>
+    <section v-else>
+      <div class="formbg-outer">
+        <div class="formbg">
+          <SignUp />
+          <div class="field padding-bottom--24">
+            <button @click="changeBoolRegister" class="create-login-btn">
+              I already have an account
+            </button>
+          </div>
+        </div>
       </div>
     </section>
     </div>
@@ -86,14 +94,17 @@ export default {
   color: #1a1f36;
   box-sizing: border-box;
   word-wrap: break-word;
-  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Ubuntu,sans-serif;
+  font-family: Helvetica Neue,Ubuntu,sans-serif;
 }
 body {
     min-height: 100%;
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
+    background-color: #343434;
 }
 h1 {
+  font-size: 30px;
     letter-spacing: -1px;
+    color: #5469d4;
 }
 a {
   color: #5469d4;
@@ -288,6 +299,19 @@ a.ssolink {
 }
 .tans4s {
   animation: animationLeftRight 4s ease-in-out infinite;
+}
+
+.create-login-btn{
+  background-color: rgb(84, 105, 212);
+  padding: 5px 20px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.text-error{
+  color: red;
+  padding: 5px;  
 }
 
 @keyframes animationLeftRight {

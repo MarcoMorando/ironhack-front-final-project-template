@@ -1,36 +1,42 @@
 <template>
-    <div v-if="!tasks">
-      <h3 class="text-lg text-center py-10 font-semibold">
-        You have no more pending tasks,
-      </h3>
-    </div>
-    <div data-test-task-list>
-      <TaskElement
-        v-for="task in tasks"
-        v-bind:key="task.id"
-        :task="task"
-        @deleteTask="deleteTask"
-        @toggleTaskCompleted="toggleTaskCompleted"
-        @editTask="editTask"
+  <article class="task-item">
+    <header class="task-header">
+      <h5 class="task-title">
+        <slot name="content" />
+      </h5>
+    </header>
+    <aside class="sidebar">
+      <slot
+        name="buttons"
       />
-    </div>
-  </template>
-  
-  <script setup>
-  import TaskElement from "./TaskElement.vue";
-  const props = defineProps({
-    tasks: Array,
-  });
-  const emit = defineEmits(["deleteTask", "toggleTaskCompleted", "editTask"]);
-  function deleteTask(task) {
-    emit("deleteTask", task);
-  }
-  const toggleTaskCompleted = (task) => {
-    emit("toggleTaskCompleted", task);
-  };
-  const editTask = (task) => {
-    emit("editTask", task);
-  };
-  </script>
-  
-  <style></style>
+    </aside>
+  </article>
+</template>
+
+<style scoped>
+.task-item {
+    display: flex;
+    min-width: 23rem;
+    justify-content: space-between;
+    min-height: 3rem;
+    align-items: center;
+    margin: 20px 0px;
+    border: 1px solid black;
+    padding-right: 10px;
+}
+
+.task-header {
+    grid-area: hd;
+}
+
+.sidebar {
+    display: flex;
+    min-width: 50%;
+    justify-content: space-between;
+}
+.task-title {
+    margin: 0;
+    padding: 0.5rem;
+}
+
+</style>

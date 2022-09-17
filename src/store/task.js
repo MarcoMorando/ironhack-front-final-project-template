@@ -17,35 +17,33 @@ export const useTaskStore = defineStore("tasks", {
       if (error) throw error;
     },
     // Hacer POST
-    async addTask(title, is_complete, user_id) {
-      const { data, error } = await supabase.from("tasks").insert([
-        {
-          title: title,
-          is_complete: is_complete,
-          user_id: user_id,
-        },
-      ]);
-      if (error) throw error;
-    },
-    // Hacer el PUT (edit)
-    async editTask(title, is_complete, taskId) {
-      const { data, error } = await supabase
-      .from('tasks')
-      .update({ title: title, is_complete: is_complete })
-      .match({id: taskId})
-    },
-    // Hacer el delete
-    async deleteTask(taskId) {
-      const { data, error } = await supabase
-      .from('tasks')
-      .delete()
-      .match({id: taskId})
-    },
-    // Hacer el PUT (cambiar entre completada y pendiente)
-    async changeTask (taskId, complete) {
+    async createTask (title, user_id) {
       await supabase
         .from('tasks')
-        .update({ is_complete: complete })
+        .insert([{ title: title, is_complete: false, user_id: user_id }]);
+      this.fetchTasks();
+    },
+    // Hacer el PUT (edit)
+    async editTask (taskId, editedTask) {
+      await supabase
+        .from('tasks')
+        .update({ title: editedTask })
+        .match({ id: taskId });
+      this.fetchTasks();
+    },
+    // Hacer el delete
+    async deleteTask (taskId) {
+      await supabase
+        .from('tasks')
+        .delete()
+        .match({ id: taskId });
+      this.fetchTasks();
+    },
+    // Hacer el PUT (cambiar entre completada y pendiente)
+    async changeStatus (taskId, status) {
+      await supabase
+        .from('tasks')
+        .update({ is_complete: status })
         .match({ id: taskId });
       this.fetchTasks();
     },

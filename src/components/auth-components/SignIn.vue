@@ -1,16 +1,18 @@
 <template>
-    <div class="">
-        <p class="">Sign in to your account</p>
-        <form class="" @submit.prevent="signIn(email, password)">
-            <div class="">
+    <div class="formbg-inner padding-horizontal--48">
+        <span class="padding-bottom--15">Sign in to your account</span>
+        <form class="stripe-login" @submit.prevent="signIn(email, password)">
+            <div class="field padding-bottom--24">
                 <label for="email" name="email" class="">Email</label>
                 <input required v-model="email" type="email" id="email" placeholder="your@email.com" class="">
             </div>
-            <div class="">
+            <div class="field padding-bottom--24">
                 <label for="password" class="">Password</label>
                 <input required v-model="password" name="password" type="password" id="password" placeholder="Password" class="">
             </div>
-            <input type="submit" value="Sign In" class="">
+            <div class="field padding-bottom--24">
+                <input type="submit" value="Sign In" class="">
+            </div>
         </form>
     </div>
 </template>

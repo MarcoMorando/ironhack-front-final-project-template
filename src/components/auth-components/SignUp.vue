@@ -1,28 +1,25 @@
 <template>
-    <div class="formbg">
-        <div class="formbg-inner padding-horizontal--48">
-          <span class="padding-bottom--15">Sign in to your account</span>
-        </div>
-    </div>
-    <div class="">
-        <p class="">Register a new account</p>
-        <form class="" @submit.prevent="isValid()">
-            <div class="">
+    <div class="formbg-inner padding-horizontal--48">
+        <span class="padding-bottom--15">Register a new account</span>
+        <form class="stripe-login" @submit.prevent="isValid()">
+            <div class="field padding-bottom--24">
                 <label for="email" name="email" class="">Email</label>
-                <input required v-model="email" type="email" id="email" placeholder="your@email.com" class="">
+                <input required v-model="email" type="email" id="email" placeholder="Your@email.com" class="">
             </div>
-            <div class="">
+            <div class="field padding-bottom--24">
                 <label for="password" class="text-lg">Password</label>
                 <input required v-model="password" name="password" type="password" id="password" placeholder="Password" class="">
             </div>
-            <div class="">
+            <div class="field padding-bottom--24">
                 <label for="repPassword" class="text-lg">Confirm password</label>
-                <input required v-model="repeatPassword" name="repeatPassword" type="password" id="repPassword" placeholder="confirm password" class="">
+                <input required v-model="repeatPassword" name="repeatPassword" type="password" id="repPassword" placeholder="Confirm password" class="">
             </div>
-            <p class="text-red">
+            <p class="text-error">
                     {{ errorMsg }}
             </p>
-            <input type="submit" value="Sign Up" class="">
+            <div class="field padding-bottom--24">
+                <input type="submit" value="Sign Up" class="">
+            </div>
         </form>
     </div>
 </template>
@@ -74,16 +71,16 @@ export default {
                      return true;
                 }
                     else {
-                        this.errorMsg ="please enter a valid email";
+                        this.errorMsg ="Please enter a valid email";
             }
         },
         checkPassword(password, repeatPassword) {
             this.password = password;
             this.repeatPassword = repeatPassword;
-            if (password.length<6) { //añadir regex para letras y números? y arreglar el mostacho
-                this.errorMsg = "the password needs 4 characters";
+            if (password.length<6) {
+                this.errorMsg = "The password needs 4 characters";
             } else if (password !== repeatPassword) {
-                this.errorMsg = "the password does not match";
+                this.errorMsg = "The password does not match";
             } else {
                 return true;
             }
